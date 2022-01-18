@@ -1,12 +1,29 @@
 import './App.css';
-import Loing from './components/Loing';
+import AddLogin from './components/AddLogin';
+import Login from './components/Login';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 
 
 function App() {
   return (
-    <div className="App">
-      <Loing></Loing>
-    </div>
+
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path="/loginAdd">
+            <AddLogin></AddLogin>
+          </Route>
+        </Switch>
+
+
+      </div>
+    </BrowserRouter>
+
+
   );
 }
 

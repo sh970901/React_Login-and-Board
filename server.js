@@ -3,21 +3,62 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const cors = require('cors')
+const mysql = require('mysql');
+const fs = require('fs');
+
+
+const data = fs.readFileSync('./database.json');
+const conf = JSON.parse(data);
+
 
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json());
 app.use(cors())
 
-
+const connection = mysql.createConnection({
+    host: conf.host,
+    user: conf.user,
+    password: conf.password,
+    port: conf.port,
+    database: conf.database
+});
+connection.connect();
 
 app.get('/api/login',(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send('hh');
+    connection.query('SELECT * FROM addlogin', function(err,rows,fields){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows)
+    })
 })
-app.post('/api/login',(request,response)=>{
-    response.header("Access-Control-Allow-Origin", "*");
-    console.log(request.body)
+
+
+app.get('/api/login/id',(req,res)=>{
+    connection.query('SELECT ID FROM addlogin', function(err,rows,fields){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows)
+    })
+})
+app.post('/api/login/id',(req,res)=>{
+    console.log(req.body)
+    res.send("gg")
+    
+})
+app.post('/api/login',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    let sql = 'INSERT INTO loginprac.addlogin VALUES (?,?,?)';
+    let ID = req.body.id
+    let PW = req.body.password
+    let Email = req.body.email
+    let params = [ID, PW, Email]
+    connection.query(sql, params,
+        (err, rows, fields) => {
+          res.header("Access-Control-Allow-Origin", "*");
+          res.send(rows);
+          console.log(err)
+          console.log(rows)
+    })
+    
 })
 app.listen(port, (req,res)=>{
     console.log("서버 작동")
