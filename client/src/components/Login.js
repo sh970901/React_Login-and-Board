@@ -28,13 +28,15 @@ const Login = () => {
                 if(inputId === data[i].ID){
                     if(inputPw === data[i].PW){
                         setUseId(true)
-                        
+                        console.log(useId)
                         alert("로그인 성공")
                         
                         history.push({
                             pathname: '/',
                             state: {
-                                id: !(useId)
+                                useid: !(useId),
+                                id: inputId,
+                                pw: inputPw
                                 
                             }
                         })
@@ -53,7 +55,7 @@ const Login = () => {
     }
     return (
         <div className='loginMain'>
-            <p>상태: off</p>
+            <p>상태: </p>
         
             <h1>로그인</h1>
             
