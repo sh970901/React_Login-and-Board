@@ -31,6 +31,13 @@ app.get('/api/login',(req,res)=>{
         res.send(rows)
     })
 })
+app.get('/api/login/email',(req,res)=>{
+    connection.query('SELECT Email FROM addlogin', function(err,rows,fields){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows)
+    })
+})
+
 
 
 app.get('/api/login/id',(req,res)=>{

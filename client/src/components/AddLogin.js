@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import {useHistory} from 'react-router-dom'
 
 const AddLogin = () => {
     const [addId, setAddId] = useState("")
@@ -12,6 +12,8 @@ const AddLogin = () => {
     const [addEmail, setAddEmail] = useState("")
     const [addPwCh, setAddPwCh] = useState("")
     const [usableID, setUsableID] = useState(false)
+
+    const history = useHistory();
 
     function handleAddId(e) {
         e.preventDefault();
@@ -43,7 +45,7 @@ const AddLogin = () => {
                         break;
                     }else{
                         if(i===data.length-1){
-                            alert("사용가능")
+                            alert("사용가능한 아이디입니다.")
                             setUsableID(true);
                         }                 
                     }               
@@ -62,12 +64,11 @@ const AddLogin = () => {
                     email: addEmail
                 };
                 axios.post("http://localhost:5000/api/login", userData)
-                    .then((response) => {
-                        if(response.status===200){
-                            console.log('로그인창 이동')
-                            //히스토리 푸쉬 써서 이동 
+                    .then((res) => {
+                        if(res.status===200){
+                            alert("생성이 완료되었습니다.")
+                            history.push('/login')
                         }
-                        console.log(response.data);
                     })
             }
         } else if(usableID === false) {
