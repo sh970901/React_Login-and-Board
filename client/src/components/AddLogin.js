@@ -37,6 +37,9 @@ const AddLogin = () => {
         fetch("http://localhost:5000/api/login/id")
             .then((res) => (res.json()))
             .then((data) => {
+                if(addId===""){
+                    alert("아이디를 입력하세요")
+                }else{
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].ID === addId) {
                         console.log(addId, data[i].ID)
@@ -49,7 +52,7 @@ const AddLogin = () => {
                             setUsableID(true);
                         }                 
                     }               
-                }           
+                }}           
             })
     }
     const handleFormSubmit = (e) => {
