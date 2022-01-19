@@ -30,11 +30,11 @@ const Login = () => {
                         setUseId(true)
                         
                         alert("로그인 성공")
-                        console.log(useId)
+                        
                         history.push({
                             pathname: '/',
                             state: {
-                                id: useId
+                                id: !(useId)
                                 
                             }
                         })
