@@ -30,7 +30,7 @@ const Login = () => {
                             setUseId(true)
                             console.log(useId)
                             alert("로그인 성공")
-
+                            sessionStorage.setItem('user_id',inputId)
                             history.push({
                                 pathname: '/',
                                 state: {

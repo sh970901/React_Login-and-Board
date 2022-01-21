@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 const Main = props => {
 
     const [loginOk, setLoginOk] = useState("로그인");
     const [state, setState] = useState("off")
+    const [isLogin, setIsLogin] = useState(false)
+
+
     const history = useHistory();
 
-    const location = useLocation();
 
 
     useEffect(() => {
-        if (location.state === undefined) {
+       
+        if(sessionStorage.getItem('user_id')===null){
+            console.log('isLogin ?? ::', isLogin)
             setState("비로그인")
+        }
+        
 
-        } else {
+        else {
             setLoginOk("로그아웃")
-            // setState(location.state.id)
-            setState(`${location.state.id}님 안녕하세요`)
+            setIsLogin(true)
+            setState(`${sessionStorage.getItem('user_id')}님 안녕하세요`)
+            console.log(sessionStorage.getItem("user_id"))
         }
 
 
@@ -26,29 +32,24 @@ const Main = props => {
 
     function change(e) {
         e.preventDefault();
-        if (location.state === undefined) {
+        if (sessionStorage.getItem('user_id')===null) {
 
             history.push('/login')
 
         } else {
-
+            alert("로그아웃 하셨습니다")
+            sessionStorage.removeItem('user_id')
             history.push("/login")
         }
     }
     function boardWrite(e){
         e.preventDefault();
-        if(location.state === undefined){
+        if(sessionStorage.getItem('user_id')===null){
             alert("로그인 후 이용가능합니다.")
         }
         else{
             history.push({
                 pathname: '/boardWrite',
-                state: {
-                    id: location.state.id,
-                    pw: location.state.pw
-                    
-                }
-
             })
             //정보넘겨주기 !!
         }
