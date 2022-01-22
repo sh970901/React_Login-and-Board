@@ -67,6 +67,26 @@ app.post('/api/login',(req,res)=>{
     })
     
 })
+app.get('/api/board',(req,res)=>{
+    connection.query('SELECT * FROM board', function (error, rows, fields) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows);
+      })
+})
+app.post('/api/board', (req,res)=>{
+    let sql = 'INSERT INTO board VALUES (null,?,?,now(),?)';
+    let title = req.body.title;
+    let content = req.body.content;
+    let writer = req.body.writer;
+    let params = [title,content,writer]
+    console.log(req.body)
+    connection.query(sql, params, (err,rows,fields)=>{
+        res.header("Access-Control-Allow-Origin", "*")
+        res.send(rows);
+    })
+})
+
+
 app.listen(port, (req,res)=>{
     console.log("서버 작동")
 })
