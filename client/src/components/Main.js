@@ -67,6 +67,7 @@ const Main = props => {
                 <h1>메인페이지 입니다</h1>
                 <Button onClick={boardWrite}>게시글 작성</Button>{"  "}
                 <Button onClick={boardRead}>게시글 조회</Button>
+                
             </div>
 
         </div>

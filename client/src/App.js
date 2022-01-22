@@ -7,6 +7,7 @@ import Main from './components/Main';
 import Header from './components/Header';
 import BoardWrite from './components/BoardWrite';
 import BoardRead from './components/BoardRead';
+import BoardDetail from './components/BoardDetail';
 
 
 
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/boardRead">
             <BoardRead></BoardRead>
+          </Route>
+          <Route path="/boardDetail">
+            <BoardDetail></BoardDetail>
           </Route>
         </Switch>
 

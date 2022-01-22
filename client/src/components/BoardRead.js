@@ -12,6 +12,9 @@ const BoardRead = () => {
     const [board, setBoard] = useState([])
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+    const [myBoard, setMyBoard] = useState([])
+
+    
 
 
     function boardRead(e) {
@@ -19,11 +22,17 @@ const BoardRead = () => {
         fetch("http://localhost:5000/api/board")
             .then((res) => (res.json()))
             .then((data) => {
-                
-                console.log(data)
                 setBoard(data)
 
             })
+    }
+    function myboardRead(e){
+        e.preventDefault();
+        fetch(`http://localhost:5000/api/board/user/${sessionStorage.getItem('user_id')}`)
+        .then((res)=>(res.json()))
+        .then(data=>{
+            setBoard(data)
+        })
     }
 
 
@@ -31,7 +40,8 @@ const BoardRead = () => {
         <div>
 
             <h1>게시글 조회</h1>
-            <Button onClick={boardRead}>조회</Button> {'  '}
+            <Button onClick={boardRead}>전체 조회</Button> {'  '}
+            <Button onClick={myboardRead}>내 글 조회</Button> {'  '}
             <Link to='/'>
                 <Button>뒤로가기</Button>
             </Link>

@@ -85,6 +85,21 @@ app.post('/api/board', (req,res)=>{
         res.send(rows);
     })
 })
+app.get('/api/board/user/:writer', (req,res)=>{
+    console.log(req.params.writer)
+    connection.query('SELECT * FROM board WHERE writer = ?', req.params.writer, function (error, rows, fields) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows);
+      })
+})
+app.delete('/api/board/user/:title', (req, res)=>{
+    console.log(req.params.title)
+    connection.query('DELETE FROM board WHERE title = ?', req.params.title, function (error, rows, fields) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows);
+      })
+
+})
 
 
 app.listen(port, (req,res)=>{
