@@ -22,8 +22,6 @@ const LoginFind = () => {
     }
     function checkEmail(e){
         e.preventDefault();
-        console.log("gg")
-
         fetch("http://localhost:5000/api/login")
         .then((res)=>(res.json()))
         .then((data)=> {
@@ -66,25 +64,14 @@ const LoginFind = () => {
             <h3>아이디 찾기</h3>
             이메일: <input type="text" name='mailFind1' value={mailFind1} onChange={handleMail1} ></input>{"  "}
             <Button onClick={checkEmail}>찾기</Button>
-
-
-
-
-
             <h3>비밀번호 찾기</h3>
             아이디: <input type='text' name='idFind' value={idFind} onChange={handleId}></input><br/>
             이메일: <input type='text' name='mailFind2' value={mailFind2} onChange={handleMail2}></input>{"  "}
             <Button onClick={checkPW}>찾기</Button>
-
-
-
-
-<br/><br/><br/>
+            <br/><br/><br/>
             <Link to ='/login'>
             <Button>돌아가기</Button>
-            </Link>
-            
-            
+            </Link>         
         </div>);
 };
 

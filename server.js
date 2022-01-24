@@ -46,11 +46,6 @@ app.get('/api/login/id',(req,res)=>{
         res.send(rows)
     })
 })
-app.post('/api/login/id',(req,res)=>{
-    console.log(req.body)
-    res.send("gg")
-    
-})
 app.post('/api/login',(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     let sql = 'INSERT INTO loginprac.addlogin VALUES (?,?,?)';
@@ -74,7 +69,7 @@ app.get('/api/board',(req,res)=>{
       })
 })
 app.post('/api/board', (req,res)=>{
-    let sql = 'INSERT INTO board VALUES (null,?,?,now(),?)';
+    let sql = 'INSERT INTO board VALUES (null,?,?,now(),?,null)';
     let title = req.body.title;
     let content = req.body.content;
     let writer = req.body.writer;
@@ -85,6 +80,26 @@ app.post('/api/board', (req,res)=>{
         res.send(rows);
     })
 })
+app.get('/api/comment/:title', (req,res)=>{
+    connection.query('SELECT * FROM comment WHERE title=?',req.params.title, function (error, rows, fields) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows);
+      })
+})
+app.post('/api/user/comment', (req,res)=>{
+    console.log(req.body)
+    let sql = 'INSERT INTO comment VALUES (null,?,?,?)'
+    let id = req.body.id;
+    let comment = req.body.comment;
+    let title = req.body.title;
+    let params = [id, title, comment]
+    connection.query(sql, params, function(error, rows,field){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(rows)
+    })
+    
+})
+
 app.get('/api/board/user/:writer', (req,res)=>{
     console.log(req.params.writer)
     connection.query('SELECT * FROM board WHERE writer = ?', req.params.writer, function (error, rows, fields) {

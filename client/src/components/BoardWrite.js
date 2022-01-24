@@ -27,7 +27,6 @@ const BoardWrite = () => {
         })
     }
     function writeboard(e){
-
         e.preventDefault();
         // setWriter(sessionStorage.getItem('user_id'))
         const userData = {
@@ -51,16 +50,12 @@ const BoardWrite = () => {
         <div>
             <Main></Main>
             <div className='Board'>
-
                 <h1>게시글 작성 {' '}<Button onClick={mainGo}>메인으로</Button></h1>
-                
                 <h4>제목</h4><input type="text" name="title" value={title} onChange={handleTitle}></input><br /><br />
                 <h4>작성일</h4>
-                <input type="text" name="data" value={Date.now()} disabled></input><br />
-                
+                <input type="text" name="data" value="현재 시간(자동 입력)" disabled></input><br />
                 <br/><h4>내용</h4>
                 <textarea name = "content" value={content} onChange={handleContent}></textarea>
-                
                 <Button onClick={writeboard}>작성</Button>
             </div>
         </div>

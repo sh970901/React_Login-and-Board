@@ -38,7 +38,6 @@ const BoardRead = () => {
 
     return (
         <div>
-
             <h1>게시글 조회</h1>
             <Button onClick={boardRead}>전체 조회</Button> {'  '}
             <Button onClick={myboardRead}>내 글 조회</Button> {'  '}
@@ -73,10 +72,6 @@ const BoardRead = () => {
                     </tr>}
                 </tbody>
             </Table>
-
-
-
-
         </div>
     )
 };

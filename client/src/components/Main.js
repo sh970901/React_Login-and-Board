@@ -6,25 +6,17 @@ const Main = props => {
     const [loginOk, setLoginOk] = useState("로그인");
     const [state, setState] = useState("off")
     const [isLogin, setIsLogin] = useState(false)
-
-
     const history = useHistory();
 
-
-
     useEffect(() => {
-       
         if(sessionStorage.getItem('user_id')===null){
             console.log('isLogin ?? ::', isLogin)
             setState("비로그인")
         }
-        
-
         else {
             setLoginOk("로그아웃")
             setIsLogin(true)
             setState(`${sessionStorage.getItem('user_id')}님 안녕하세요`)
-            console.log(sessionStorage.getItem("user_id"))
         }
 
 
@@ -51,7 +43,6 @@ const Main = props => {
             history.push({
                 pathname: '/boardWrite',
             })
-            //정보넘겨주기 !!
         }
     }
     function boardRead(e){
@@ -67,9 +58,7 @@ const Main = props => {
                 <h1>메인페이지 입니다</h1>
                 <Button onClick={boardWrite}>게시글 작성</Button>{"  "}
                 <Button onClick={boardRead}>게시글 조회</Button>
-                
             </div>
-
         </div>
     )
 };

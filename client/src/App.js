@@ -9,12 +9,8 @@ import BoardWrite from './components/BoardWrite';
 import BoardRead from './components/BoardRead';
 import BoardDetail from './components/BoardDetail';
 
-
-
-
 function App() {
   return (
-
     <BrowserRouter>
       <div className="App">
         <Header></Header>
@@ -43,13 +39,8 @@ function App() {
             <BoardDetail></BoardDetail>
           </Route>
         </Switch>
-
-
       </div>
     </BrowserRouter>
-
-
   );
 }
-
 export default App;

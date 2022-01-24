@@ -5,10 +5,8 @@ const Board = (props) => {
     const history = useHistory();
     function selectTr(e) {
         e.preventDefault()
-        console.log(`${props.id}행 선택됨`)
-        console.log(props)
         history.push({
-            pathname: '/BoardDetail',
+            pathname: '/boardDetail',
             state: {props: props}
         })
     }

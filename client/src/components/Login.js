@@ -9,7 +9,6 @@ const Login = () => {
     const [inputId, setInputId] = useState("")
     const [inputPw, setInputPw] = useState("")
     const [useId, setUseId] = useState(false);
-
     const history = useHistory();
     function handleInputId(e) {
         e.preventDefault();
@@ -40,8 +39,7 @@ const Login = () => {
                                 }
                             })
                             break;
-                        }
-                    }
+                        } }
                     else {
                         if (i === data.length - 1) {
                             alert('로그인 실패')
@@ -52,10 +50,7 @@ const Login = () => {
     }
     return (
         <div className='loginMain'>
-            <p>상태: </p>
-
             <h1>로그인</h1>
-
             ID: <input type='text' name='inputId' value={inputId} onChange={handleInputId}></input><br />
             PW: <input type="password" name='inputPw' value={inputPw} onChange={handleInputPw}></input><br /><br />
             <Button onClick={checkLogin}>확인</Button>{'  '}
